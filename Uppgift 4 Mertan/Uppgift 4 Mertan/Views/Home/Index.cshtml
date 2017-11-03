@@ -1,31 +1,153 @@
-﻿@{
+﻿@model  List<Uppgift_4_Mertan.Models.db.Programs>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<h2 style="color:#a30707">Missa inte idag @Model[0].Date!</h2>
+<hr />
+<div class="form-horizontal">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        if (Model[i].Id == 14 || Model[i].Id == 26 || Model[i].Id == 41 || Model[i].Id == 74)
+        {
+           <h3> @Model[i].Time  <text style="color:#ff0000">@Model[i].Channels.Name </text>   @Model[i].Title   @Html.ActionLink("Läs mer", "Details", new { id = Model[i].Id })</h3>
+        }
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+    }
+    <hr />
+    <h2 style="color:#a30707">På TV NU!</h2>
+
+
+    <h3>SVT 1</h3>
+    <table class="table-hover table-bordered"> 
+        @foreach (var prog in Model)
+        {
+            if (prog.Time <= DateTime.Now.TimeOfDay)
+            {
+                if (prog.ChannelId == 1)
+                {
+                    <tr>
+                        <td class="col-md-3">@prog.Time</td>
+                        <td class="col-md-3 col-md-offset-3">@prog.Title</td>
+                        <td class="col-md-3 col-md-offset-3">@Html.ActionLink("Dagens program för SVT 1", "KanalProgram", new { linkText = "ProgramSVT1" }, null)</td>
+                    </tr>
+                    break;
+                }
+            }
+        }
+    </table>
+    <hr />
+    <h3>TV 3</h3>
+    <table class="table-hover table-bordered">
+        @foreach (var prog in Model)
+        {
+            if (prog.Time <= DateTime.Now.TimeOfDay)
+            {
+                if (prog.ChannelId == 2)
+                {
+                    <tr>
+                        <td class="col-md-3">@prog.Time</td>
+                        <td class="col-md-3 col-md-offset-3">@prog.Title</td>
+                        <td class="col-md-3 col-md-offset-3">@Html.ActionLink("Dagens program för TV 3", "KanalProgram", new { linkText = "ProgramTV3" }, null)</td>
+                    </tr>
+                    break;
+                }
+            }
+        }
+    </table>
+    <hr />
+    <h3>TV 4</h3>
+    <table class="table-hover table-bordered">
+        @foreach (var prog in Model)
+        {
+            if (prog.Time <= DateTime.Now.TimeOfDay)
+            {
+                if (prog.ChannelId == 3)
+                {
+                    <tr>
+                        <td class="col-md-3">@prog.Time</td>
+                        <td class="col-md-3 col-md-offset-3">@prog.Title</td>
+                        <td class="col-md-3 col-md-offset-3">@Html.ActionLink("Dagens program för TV 4", "KanalProgram", new { linkText = "ProgramTV4" }, null)</td>
+                    </tr>
+                    break;
+                }
+            }
+        }
+    </table>
+    <hr />
+    <h3>Sjuan</h3>
+    <table class="table-hover table-bordered">
+        @foreach (var prog in Model)
+        {
+            if (prog.Time <= DateTime.Now.TimeOfDay)
+            {
+                if (prog.ChannelId == 4)
+                {
+                    <tr>
+                        <td class="col-md-3">@prog.Time</td>
+                        <td class="col-md-3 col-md-offset-3">@prog.Title</td>
+                        <td class="col-md-3 col-md-offset-3">@Html.ActionLink("Dagens program för Sjuan", "KanalProgram", new { linkText = "ProgramSjaun" }, null)</td>
+                    </tr>
+                    break;
+                }
+            }
+        }
+    </table>
+    <hr />
+    <h3>TV 8</h3>
+    <table class="table-hover table-bordered">
+        @foreach (var prog in Model)
+        {
+            if (prog.Time <= DateTime.Now.TimeOfDay)
+            {
+                if (prog.ChannelId == 5)
+                {
+                    <tr>
+                        <td class="col-md-3">@prog.Time</td>
+                        <td class="col-md-3 col-md-offset-3">@prog.Title</td>
+                        <td class="col-md-3 col-md-offset-3">@Html.ActionLink("Dagens program för TV8", "KanalProgram", new { linkText = "ProgramTV8" }, null)</td>
+                    </tr>
+                    break;
+                }
+            }
+        }
+    </table>
+    <hr />
+
+    <h3>TV Tablå för:</h3>
+    <ul class="pagination">
+        <li>@Html.ActionLink("Idag", "Tablo", "Home", new { linkText = "idag" }, null)</li>
+        <li>@Html.ActionLink("Imorgon", "Tablo", "Home", new { linkText = "imorgon" }, null)</li>
+        <li>@Html.ActionLink("Efter 2 dagar", "Tablo", "Home", new { linkText = "3Day" }, null)</li>
+        <li>@Html.ActionLink("Efter 3 dagar", "Tablo", "Home", new { linkText = "4Day" }, null)</li>
+        <li>@Html.ActionLink("Efter 4 dagar", "Tablo", "Home", new { linkText = "5Day" }, null)</li>
+        <li>@Html.ActionLink("Efter 5 dagar", "Tablo", "Home", new { linkText = "6Day" }, null)</li>
+        <li>@Html.ActionLink("Efter 6 dagar", "Tablo", "Home", new { linkText = "7Day" }, null)</li>
+    </ul>
+
+    @*<hr />
+    <h3 class="text-info">@Model[16].Resume</h3>
+    <table class="table-hover">
+        <tr>
+            <th class="col-md-3">@Model[16].Time</th>
+            <th class="col-md-3 col-md-offset-3">@Model[16].Channels.Name</th>
+            <th class="col-md-3 col-md-offset-3">@Model[16].Title</th>
+            <th class="col-md-3 col-md-offset-3">@Html.ActionLink("Läs mer", "Details", new { id = Model[16].Id })</th>
+        </tr>
+    </table>
+    <hr />
+    <h3 class="text-info">@Model[36].Resume</h3>
+    <table class="table-hover">
+        <tr>
+            <th class="col-md-3">@Model[36].Time</th>
+            <th class="col-md-3 col-md-offset-3">@Model[36].Channels.Name</th>
+            <th class="col-md-3 col-md-offset-3">@Model[36].Title</th>
+            <th class="col-md-3 col-md-offset-3">@Html.ActionLink("Läs mer", "Details", new { id = Model[36].Id })</th>
+        </tr>
+    </table>*@
+
+
+      
+
 </div>

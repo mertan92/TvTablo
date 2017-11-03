@@ -1,0 +1,82 @@
+﻿@model  List<Uppgift_4_Mertan.Models.db.Programs>
+@{
+    ViewBag.Title = "Tablo";
+}
+
+<h2 style="color:#a30707">TV Tablå för @Model[0].Date</h2>
+
+<h3>SVT 1</h3>
+<table class="table-hover table-bordered">
+    @foreach (var prog in Model)
+    {
+        if (prog.ChannelId == 1)
+        {
+            <tr>
+                <td class="col-md-3">@prog.Time</td>
+                <td class="col-md-3 col-md-offset-3">@prog.Title</td>
+                <td class="col-md-3 col-md-offset-3">@Html.ActionLink("Läs mer", "Details", new { id = prog.Id, datum = prog.Date })</td>
+            </tr>
+        }
+    }
+</table>
+<hr />
+<h3>TV 3</h3>
+<table class="table-hover table-bordered">
+    @foreach (var prog in Model)
+    {
+        if (prog.ChannelId == 2)
+        {
+            <tr>
+                <td class="col-md-3">@prog.Time</td>
+                <td class="col-md-3 col-md-offset-3">@prog.Title</td>
+                <td class="col-md-3 col-md-offset-3">@Html.ActionLink("Läs mer", "Details", new { id = prog.Id, datum = prog.Date })</td>
+            </tr>
+        }
+    }
+</table>
+<hr />
+<h3>TV 4</h3>
+<table class="table-hover table-bordered">
+    @foreach (var prog in Model)
+    {
+        if (prog.ChannelId == 3)
+        {
+            <tr>
+                <td class="col-md-3">@prog.Time</td>
+                <td class="col-md-3 col-md-offset-3">@prog.Title</td>
+                <td class="col-md-3 col-md-offset-3">@Html.ActionLink("Läs mer", "Details", new { id = prog.Id, datum = prog.Date })</td>
+            </tr>
+        }
+    }
+</table>
+<hr />
+<h3>Sjaun</h3>
+<table class="table-hover table-bordered">
+    @foreach (var prog in Model)
+    {
+        if (prog.ChannelId == 4)
+        {
+            <tr>
+                <td class="col-md-3">@prog.Time</td>
+                <td class="col-md-3 col-md-offset-3">@prog.Title</td>
+                <td class="col-md-3 col-md-offset-3">@Html.ActionLink("Läs mer", "Details", new { id = prog.Id, datum = prog.Date })</td>
+            </tr>
+        }
+    }
+</table>
+<hr />
+<h3>TV 8</h3>
+<table class="table-hover table-bordered">
+    @foreach (var prog in Model)
+    {
+        if (prog.ChannelId == 5)
+        {
+            <tr>
+                <td class="col-md-3">@prog.Time</td>
+                <td class="col-md-3 col-md-offset-3">@prog.Title</td>
+                <td class="col-md-3 col-md-offset-3">@Html.ActionLink("Läs mer", "Details", new { id = prog.Id, datum = prog.Date })</td>
+            </tr>
+        }
+    }
+</table>
+<hr />

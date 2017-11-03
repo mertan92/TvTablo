@@ -1,0 +1,23 @@
+﻿@model  List<Uppgift_4_Mertan.Models.db.Programs>
+
+@{
+    ViewBag.Title = "KanalProgram";
+}
+
+<h2>@Model[0].Channels.Name</h2>
+
+<table class="table-hover table-bordered">
+    @foreach (var prog in Model)
+    {
+        <tr>
+            <td class="col-md-3">@prog.Time</td>
+            <td class="col-md-3 col-md-offset-3">@prog.Title</td>
+            <td class="col-md-3 col-md-offset-3">@Html.ActionLink("Läs mer", "Details", new { id = prog.Id })</td>
+        </tr>
+    }
+</table>
+
+@Html.ActionLink("Tillbaka till start sidan", "Index", "Home")
+
+
+

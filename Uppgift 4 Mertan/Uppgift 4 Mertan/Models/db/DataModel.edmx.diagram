@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1a0173ee09d24de389549420a1e1395e" Name="Diagram1">
+        <EntityTypeShape EntityType="TvTabloModel.Channels" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TvTabloModel.Programs" Width="1.5" PointX="9.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TvTabloModel.Roles" Width="1.5" PointX="1" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TvTabloModel.Users" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TvTabloModel.Users_Chanels" Width="1.5" PointX="6.625" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="TvTabloModel.FK_Programs_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TvTabloModel.FK_Users_Chanels_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TvTabloModel.FK_Users_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TvTabloModel.FK_Users_Chanels_ToTable" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
