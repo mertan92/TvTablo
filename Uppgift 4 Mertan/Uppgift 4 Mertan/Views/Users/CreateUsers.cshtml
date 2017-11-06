@@ -1,21 +1,19 @@
 ﻿@model Uppgift_4_Mertan.Models.db.Users
 
 @{
-    ViewBag.Title = "Redigera";
+    ViewBag.Title = "Registrerings form";
 }
 
-<h2>Redigera</h2>
+<h2>Registrera dig</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Användare</h4>
+        <h4>Som användare</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
         <div class="form-group">
             @Html.LabelFor(model => model.Username, "Användarnamn", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -31,23 +29,24 @@
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.RoleId, "Behörighet", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("RoleId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>  
+        
+       
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Spara" class="btn btn-default" />
+                <input type="submit" value="Registrera" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Tillbaka till listan med användare", "Index")
+    @Html.ActionLink("Tillbaka till start sidan", "Index", "Home")
 </div>

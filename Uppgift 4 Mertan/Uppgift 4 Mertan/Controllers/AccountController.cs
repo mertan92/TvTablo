@@ -28,7 +28,16 @@ namespace Uppgift_4_Mertan.Controllers
                 {
                     //ako iskame cookie koito da zapazva druga informaciq osven inlogning pishem true vmesto false (zapiski 5.19)
                     FormsAuthentication.SetAuthCookie(model.Username, false);
-                    return Redirect(ReturnUrl);
+                    try
+                    {
+                        return Redirect(ReturnUrl);
+                    }
+                    catch (Exception)
+                    {
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                    
                 }
                 else
                 {

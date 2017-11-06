@@ -1,20 +1,22 @@
-﻿@model  List<Uppgift_4_Mertan.Models.db.Programs>
+﻿@model IEnumerable<Uppgift_4_Mertan.Models.db.Programs>
 
 @{
     ViewBag.Title = "Home Page";
 }
 
-<h2 style="color:#a30707">Missa inte idag @Model[0].Date!</h2>
+
+
+<h2 style="color:#a30707">Missa inte idag @Model.ElementAt(0).Date!</h2>
 <hr />
 <div class="form-horizontal">
-    @for (int i = 0; i < Model.Count; i++)
+    @foreach (var item in Model)
     {
-        if (Model[i].Id == 14 || Model[i].Id == 26 || Model[i].Id == 41 || Model[i].Id == 74)
+        if (item.Id == 14 || item.Id == 26 || item.Id == 41 || item.Id == 74)
         {
-           <h3> @Model[i].Time  <text style="color:#ff0000">@Model[i].Channels.Name </text>   @Model[i].Title   @Html.ActionLink("Läs mer", "Details", new { id = Model[i].Id })</h3>
+            <h3> @item.Time  <text style="color:#ff0000">@item.Channels.Name </text>   @item.Title   @Html.ActionLink("Läs mer", "Details", new { id = item.Id })</h3>
         }
-
     }
+
     <hr />
     <h2 style="color:#a30707">På TV NU!</h2>
 
@@ -125,29 +127,5 @@
         <li>@Html.ActionLink("Efter 5 dagar", "Tablo", "Home", new { linkText = "6Day" }, null)</li>
         <li>@Html.ActionLink("Efter 6 dagar", "Tablo", "Home", new { linkText = "7Day" }, null)</li>
     </ul>
-
-    @*<hr />
-    <h3 class="text-info">@Model[16].Resume</h3>
-    <table class="table-hover">
-        <tr>
-            <th class="col-md-3">@Model[16].Time</th>
-            <th class="col-md-3 col-md-offset-3">@Model[16].Channels.Name</th>
-            <th class="col-md-3 col-md-offset-3">@Model[16].Title</th>
-            <th class="col-md-3 col-md-offset-3">@Html.ActionLink("Läs mer", "Details", new { id = Model[16].Id })</th>
-        </tr>
-    </table>
-    <hr />
-    <h3 class="text-info">@Model[36].Resume</h3>
-    <table class="table-hover">
-        <tr>
-            <th class="col-md-3">@Model[36].Time</th>
-            <th class="col-md-3 col-md-offset-3">@Model[36].Channels.Name</th>
-            <th class="col-md-3 col-md-offset-3">@Model[36].Title</th>
-            <th class="col-md-3 col-md-offset-3">@Html.ActionLink("Läs mer", "Details", new { id = Model[36].Id })</th>
-        </tr>
-    </table>*@
-
-
-      
 
 </div>

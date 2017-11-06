@@ -27,15 +27,19 @@
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Login" class="btn btn-default" />
             </div>
         </div>
-    </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <h3>Om du ännu är inte registrerad klick på @Html.ActionLink("Registrera mig", "CreateUsers", "Users") </h3>
+            </div>
+        </div>
+      </div>
 }
 
 <div>
-    @Html.ActionLink("Back to Main", "Index", "Home")
+    @Html.ActionLink("Tillbaka till startsidan", "Index", "Home")
 </div>

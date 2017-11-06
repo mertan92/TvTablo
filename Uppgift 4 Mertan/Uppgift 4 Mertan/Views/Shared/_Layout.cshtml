@@ -1,4 +1,6 @@
-﻿@*@model Uppgift_4_Mertan.Models.db.Users*@
+﻿@*@model Uppgift_4_Mertan.Models.ViewModels.LoginVM*@
+
+
 
 <!DOCTYPE html>
 <html>
@@ -24,9 +26,13 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Personlig tablå", "PersonligTablo", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    @*@if (User.IsInRole("Admin"))*@
+                    <li>@Html.ActionLink("Admin", "Admin", "Home")</li>
+
+                    @*@if (Model.Users.Roles.Role == "Admin")
+                    {
+                        <li>@Html.ActionLink("Admin", "About", "Home")</li>
+                    }*@
                     @if (User.Identity.IsAuthenticated == false)
                     {
                         <li>@Html.ActionLink("Logga in", "LogIn", "Home")</li>
@@ -40,6 +46,12 @@
         </div>
     </div>
     <div class="container body-content">
+        <div class="container">
+            @if (TempData["Message"] != null)
+            {
+                <div class="@TempData["CssClass"]">@TempData["Message"]</div>
+            }
+        </div>
         @RenderBody()
         <hr />
         <footer>

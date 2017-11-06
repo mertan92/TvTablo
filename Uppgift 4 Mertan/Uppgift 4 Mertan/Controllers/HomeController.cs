@@ -25,7 +25,7 @@ namespace Uppgift_4_Mertan.Controllers
             {
                 prog[i].Date = dOp.GetDate(null);
             }
-            return View(prog);
+            return View(prog.ToList());
         }
 
         public ActionResult Details(int? id, string datum)
@@ -128,9 +128,9 @@ namespace Uppgift_4_Mertan.Controllers
         }
 
         [AuthorizeRolesAttribute("Admin")]
-        public ActionResult About()
+        public ActionResult Admin()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Här du kan lägga till, redigera och ta bort användarens konto, programmer och nyhetspuffar ";
 
             return View();
         }

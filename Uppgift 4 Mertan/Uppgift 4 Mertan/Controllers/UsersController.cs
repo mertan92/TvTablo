@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Uppgift_4_Mertan.Models.db;
+using Uppgift_4_Mertan.Security;
 
 namespace Uppgift_4_Mertan.Controllers
 {
@@ -15,6 +16,7 @@ namespace Uppgift_4_Mertan.Controllers
         private TvTabloEntities2 db = new TvTabloEntities2();
 
         // GET: Users
+        [AuthorizeRolesAttribute("Admin")]
         public ActionResult Index()
         {
             var users = db.Users.Include(u => u.Roles);
@@ -22,6 +24,7 @@ namespace Uppgift_4_Mertan.Controllers
         }
 
         // GET: Users/Details/5
+        [AuthorizeRolesAttribute("Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,9 +40,17 @@ namespace Uppgift_4_Mertan.Controllers
         }
 
         // GET: Users/Create
+        [AuthorizeRolesAttribute("Admin")]
         public ActionResult Create()
         {
             ViewBag.RoleId = new SelectList(db.Roles, "Id", "Role");
+            return View();
+        }
+
+        // Creat only users
+        public ActionResult CreateUsers()
+        {
+            ViewBag.RoleId = new SelectList(db.Roles.Where(x => x.Role == "User"), "Id", "Role");
             return View();
         }
 
@@ -54,14 +65,45 @@ namespace Uppgift_4_Mertan.Controllers
             {
                 db.Users.Add(users);
                 db.SaveChanges();
+                TempData["message"] = "Allt är klart! Användaren är registrerad!";
+                TempData["CssClass"] = "alert-success";
                 return RedirectToAction("Index");
             }
+            else
+            {
+                TempData["message"] = "Något gick fel! Kontrolera om du har inte glömt att fylla i någon fält!";
+                TempData["CssClass"] = "alert-danger";
+                ViewBag.RoleId = new SelectList(db.Roles, "Id", "Role", users.RoleId);
+                return View(users);
+            }
 
-            ViewBag.RoleId = new SelectList(db.Roles, "Id", "Role", users.RoleId);
-            return View(users);
+           
+        }
+
+        //Only for users
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateUsers([Bind(Include = "Id,Username,Password,RoleId")] Users users)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Users.Add(users);
+                db.SaveChanges();
+                TempData["message"] = "Du är registrerad! Nu kan du logga in med dina uppgifter";
+                TempData["CssClass"] = "alert-success";
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                TempData["message"] = "Något gick fel! Kontrolera om du har inte glömt att fylla i någon fält!";
+                TempData["CssClass"] = "alert-danger";
+                ViewBag.RoleId = new SelectList(db.Roles, "Id", "Role", users.RoleId);
+                return View(users);
+            }
         }
 
         // GET: Users/Edit/5
+        [AuthorizeRolesAttribute("Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,13 +130,22 @@ namespace Uppgift_4_Mertan.Controllers
             {
                 db.Entry(users).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["message"] = "Allt är klart! Användare är uppdaterad!";
+                TempData["CssClass"] = "alert-success";
                 return RedirectToAction("Index");
             }
-            ViewBag.RoleId = new SelectList(db.Roles, "Id", "Role", users.RoleId);
-            return View(users);
+            else
+            {
+                TempData["message"] = "Något gick fel! Kontrolera om du har inte glömt att fylla i någon fält!";
+                TempData["CssClass"] = "alert-danger";
+                ViewBag.RoleId = new SelectList(db.Roles, "Id", "Role", users.RoleId);
+                return View(users);
+            }
+           
         }
 
         // GET: Users/Delete/5
+        [AuthorizeRolesAttribute("Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,6 +168,8 @@ namespace Uppgift_4_Mertan.Controllers
             Users users = db.Users.Find(id);
             db.Users.Remove(users);
             db.SaveChanges();
+            TempData["message"] = "Allt är klart! Användare är borttagen!";
+            TempData["CssClass"] = "alert-success";
             return RedirectToAction("Index");
         }
 

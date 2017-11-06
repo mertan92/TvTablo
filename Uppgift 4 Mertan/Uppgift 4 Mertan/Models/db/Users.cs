@@ -11,7 +11,8 @@ namespace Uppgift_4_Mertan.Models.db
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,7 @@ namespace Uppgift_4_Mertan.Models.db
     
         public int Id { get; set; }
         public string Username { get; set; }
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         public int RoleId { get; set; }
     

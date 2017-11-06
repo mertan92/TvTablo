@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Admins startsida";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<ul class="pagination">
+    <li>@Html.ActionLink("Hantera användare", "Index", "Users")</li>
+    <li>@Html.ActionLink("Hantera Programmer/Kanaler", "Tablo", "Home")</li>
+    <li>@Html.ActionLink("Efter 2 dagar", "Tablo", "Home")</li>
+</ul>
