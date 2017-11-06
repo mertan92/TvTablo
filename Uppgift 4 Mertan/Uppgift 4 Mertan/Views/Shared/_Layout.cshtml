@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@*@model Uppgift_4_Mertan.Models.db.Users*@
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,8 +23,18 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Personlig tablå", "PersonligTablo", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @*@if (User.IsInRole("Admin"))*@
+                    @if (User.Identity.IsAuthenticated == false)
+                    {
+                        <li>@Html.ActionLink("Logga in", "LogIn", "Home")</li>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Logga ut", "SignOut", "Account")</li>
+                    }
                 </ul>
             </div>
         </div>

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Uppgift_4_Mertan.Data;
 using Uppgift_4_Mertan.Models.db;
 using System.Data.Entity;
+using Uppgift_4_Mertan.Security;
 
 namespace Uppgift_4_Mertan.Controllers
 {
@@ -126,6 +127,7 @@ namespace Uppgift_4_Mertan.Controllers
             return View(prog);
         }
 
+        [AuthorizeRolesAttribute("Admin")]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -138,6 +140,20 @@ namespace Uppgift_4_Mertan.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [Authorize]
+        public ActionResult PersonligTablo()
+        {
+            ViewBag.Message = "Din egen sida.";
+
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult LogIn()
+        {
+            return RedirectToAction("Index", "Home");
         }
     }
 }

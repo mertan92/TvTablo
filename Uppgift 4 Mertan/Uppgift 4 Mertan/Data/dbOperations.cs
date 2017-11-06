@@ -58,6 +58,27 @@ namespace Uppgift_4_Mertan.Data
             return program.ToList();
         }
 
+        public bool CheckUserCredentials(string username, string password)
+        {
+            var user = db.Users.Where(x => x.Username.Equals(username) && x.Password.Equals(password));
 
+            if (user.Any())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool IsUserInRole(string userName, string roleName)
+        {
+            var role = db.Users
+            .Where(x => x.Username.Equals(userName))
+            .Include(x => x.Roles).Where(x => x.Roles.Role.Equals(roleName));
+
+            return role.Any();
+        }
     }
 }
