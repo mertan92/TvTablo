@@ -9,7 +9,7 @@
 <table class="table-hover table-bordered">
     @foreach (var prog in Model)
     {
-        if (prog.ChannelId == 1)
+        if (prog.ChannelId == 1 && prog.Id < 76)
         {
             <tr>
                 <td class="col-md-3">@prog.Time</td>
@@ -24,7 +24,7 @@
 <table class="table-hover table-bordered">
     @foreach (var prog in Model)
     {
-        if (prog.ChannelId == 2)
+        if (prog.ChannelId == 2 && prog.Id < 76)
         {
             <tr>
                 <td class="col-md-3">@prog.Time</td>
@@ -39,7 +39,7 @@
 <table class="table-hover table-bordered">
     @foreach (var prog in Model)
     {
-        if (prog.ChannelId == 3)
+        if (prog.ChannelId == 3 && prog.Id < 76)
         {
             <tr>
                 <td class="col-md-3">@prog.Time</td>
@@ -54,7 +54,7 @@
 <table class="table-hover table-bordered">
     @foreach (var prog in Model)
     {
-        if (prog.ChannelId == 4)
+        if (prog.ChannelId == 4 && prog.Id < 76)
         {
             <tr>
                 <td class="col-md-3">@prog.Time</td>
@@ -69,7 +69,7 @@
 <table class="table-hover table-bordered">
     @foreach (var prog in Model)
     {
-        if (prog.ChannelId == 5)
+        if (prog.ChannelId == 5 && prog.Id < 76)
         {
             <tr>
                 <td class="col-md-3">@prog.Time</td>

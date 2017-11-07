@@ -11,10 +11,12 @@
 <div class="form-horizontal">
     @foreach (var item in Model)
     {
-        if (item.Id == 14 || item.Id == 26 || item.Id == 41 || item.Id == 74)
+        if (item.Id < 76)
         {
-            <h3> @item.Time  <text style="color:#ff0000">@item.Channels.Name </text>   @item.Title   @Html.ActionLink("Läs mer", "Details", new { id = item.Id })</h3>
+            break;
         }
+        <h3> @item.Time  <text style="color:#ff0000">@item.Channels.Name </text>   @item.Title   @Html.ActionLink("Läs mer", "Details", new { id = item.Id })</h3>
+        
     }
 
     <hr />

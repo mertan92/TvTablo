@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Uppgift_4_Mertan.Models.db.Programs>
+
+@{
+    ViewBag.Title = "Lista med program";
+}
+
+<h2>Lista med program</h2>
+<br />
+<p class="text-info">
+    Använd id upp till 75 för att de hamnar i tv tablån. Annars programmet som skapas ska hamna hos nyhetspuffarna. De som har id större än 75 blir nyhetspuffar.
+    Om det inte finns ledig plats upp till 75, prova att redigera och ersätta någon befintlig program med den nya som du vill, eller du kan ta bort först och sedan kan sätta den nya med
+    den programmets id som är borttagen redan.
+</p>
+<br />
+<p>
+    @Html.ActionLink("Skapa nytt program", "Create")
+</p>
+<table class="table table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Resume)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Channels.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    if (item.Id > 75)
+    {
+        break;
+    }
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Resume)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Channels.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Redigera", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detaljer", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Ta bort", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

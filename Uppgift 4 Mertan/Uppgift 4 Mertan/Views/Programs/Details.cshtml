@@ -1,0 +1,85 @@
+﻿@model Uppgift_4_Mertan.Models.db.Programs
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Programs</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Channels.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Channels.Name)
+        </dd>
+
+    </dl>
+</div>
+@if (Model.Id < 76)
+{
+    <p>
+        @Html.ActionLink("Redigera", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Tillbaka till listan med programmen", "Index")
+    </p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("Redigera", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Tillbaka till listan med nyhetspuffarna", "IndexPuffar")
+    </p>
+}
+
