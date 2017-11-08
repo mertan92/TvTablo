@@ -1,0 +1,40 @@
+﻿@model Uppgift_4_Mertan.Models.db.Users_Chanels
+
+@{
+    ViewBag.Title = "Ta bort kanal från Personlig tablå";
+}
+
+<h2>Ta bort kanal från Personlig Tablå</h2>
+
+<h4>Är du säker att du vill ta bort den kanalen från Personlig tablå?</h4>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Channels.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Channels.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.Username)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Ta bort" class="btn btn-default" /> |
+            @Html.ActionLink("Tillbaka till listan med kanaler", "Index")
+        </div>
+    }
+</div>

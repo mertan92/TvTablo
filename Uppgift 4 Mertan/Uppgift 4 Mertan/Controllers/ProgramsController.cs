@@ -90,8 +90,6 @@ namespace Uppgift_4_Mertan.Controllers
                             TempData["CssClass"] = "alert-danger";
                             return RedirectToAction("IndexPuffar");
                         }
-                        
-
                     }
                     
                 }

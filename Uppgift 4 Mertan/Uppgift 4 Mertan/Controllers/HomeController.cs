@@ -14,7 +14,7 @@ namespace Uppgift_4_Mertan.Controllers
     public class HomeController : Controller
     {
         private dbOperations dOp = new dbOperations();
-        private TvTabloEntities2 db2 = new TvTabloEntities2();
+        private TvTabloEntities2 db = new TvTabloEntities2();
        
 
 
@@ -34,7 +34,7 @@ namespace Uppgift_4_Mertan.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Programs prog = db2.Programs.Find(id);
+            Programs prog = db.Programs.Find(id);
             if (prog == null)
             {
                 return HttpNotFound();
@@ -145,9 +145,43 @@ namespace Uppgift_4_Mertan.Controllers
         [Authorize]
         public ActionResult PersonligTablo()
         {
-            ViewBag.Message = "Din egen sida.";
+            var programs = dOp.GetProgramsASC();
+            List<Programs> choosenPrograms = new List<Programs>();
+            var users_Chanels = db.Users_Chanels.Include(u => u.Channels).Include(u => u.Users).Where(x => x.Users.Username == User.Identity.Name);
+            string[] chanelArray = new string[5];
+            int counter = 0;
 
-            return View();
+            foreach (var prog in programs)
+            {
+                foreach (var item in users_Chanels)
+                {
+                    if (prog.Channels.Name == item.Channels.Name)
+                    {
+
+                        if (prog.Id < 76)
+                        {
+                            choosenPrograms.Add(prog);
+                        }
+                    }
+                }
+            }
+
+            //foreach (var item in users_Chanels)
+            //{
+            //    try
+            //    {
+            //        chanelArray[counter] = item.Channels.Name;
+            //        counter++;
+            //    }
+            //    catch (Exception)
+            //    {
+
+            //    }
+
+            //}
+
+            ViewBag.Kanal = users_Chanels;
+            return View(choosenPrograms);
         }
 
         [Authorize]

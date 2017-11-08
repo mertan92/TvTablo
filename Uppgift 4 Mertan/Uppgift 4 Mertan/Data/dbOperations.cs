@@ -10,14 +10,14 @@ namespace Uppgift_4_Mertan.Data
     public class dbOperations
     {
         private TvTabloEntities2 db = new TvTabloEntities2();
-        
+
 
         public string GetDate(string dag)
         {
             var date = "";
             if (dag == null || dag == "idag")
             {
-                 date = DateTime.Now.Date.ToShortDateString();       //Sledvashtata st1pka e da napravq programata za cqlata sedmica s razlini dati. DateTime.Now.Date +1 shte napravq po nqkak1v na4in.
+                 date = DateTime.Now.Date.ToShortDateString();      
             }
             else if (dag == "imorgon")
             {
@@ -80,5 +80,31 @@ namespace Uppgift_4_Mertan.Data
 
             return role.Any();
         }
+
+        public int GetUserChannelsNextId()
+        {
+            var listUserChannelsId = db.Users_Chanels;
+            int userChannelsLastId = 0;
+            if (listUserChannelsId.Count() != 0)
+            {
+                foreach (var item in listUserChannelsId)
+                {
+                    userChannelsLastId = item.Id;
+                }
+            }
+            
+            return userChannelsLastId + 1;
+        }
+
+
+        //public List<Programs> GetProgramsForPersonligTablo()
+        //{
+        //    var program = db.Programs.Include(x => x.Channels.Users_Chanels);
+        //    //.Where(s => s.Users.Username == User.Identity.Name);
+        //    return program.ToList();
+        //}
+
+
+
     }
 }

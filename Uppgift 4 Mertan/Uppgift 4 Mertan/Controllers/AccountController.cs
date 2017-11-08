@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Uppgift_4_Mertan.Data;
+using Uppgift_4_Mertan.Models.db;
 using Uppgift_4_Mertan.Models.ViewModels;
 
 namespace Uppgift_4_Mertan.Controllers
@@ -12,6 +15,8 @@ namespace Uppgift_4_Mertan.Controllers
     public class AccountController : Controller
     {
         private dbOperations dOp = new dbOperations();
+        private TvTabloEntities2 db = new TvTabloEntities2();
+
 
         // GET: Account
         public ActionResult Login()
@@ -28,6 +33,7 @@ namespace Uppgift_4_Mertan.Controllers
                 {
                     //ako iskame cookie koito da zapazva druga informaciq osven inlogning pishem true vmesto false (zapiski 5.19)
                     FormsAuthentication.SetAuthCookie(model.Username, false);
+                    
                     try
                     {
                         return Redirect(ReturnUrl);
@@ -37,7 +43,6 @@ namespace Uppgift_4_Mertan.Controllers
 
                         return RedirectToAction("Index", "Home");
                     }
-                    
                 }
                 else
                 {
@@ -46,6 +51,10 @@ namespace Uppgift_4_Mertan.Controllers
             }
             return View();
         }
+
+
+
+
 
         public ActionResult SignOut()
         {

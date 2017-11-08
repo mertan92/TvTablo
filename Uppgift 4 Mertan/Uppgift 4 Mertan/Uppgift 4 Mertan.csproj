@@ -134,6 +134,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\Users_ChanelsController.cs" />
     <Compile Include="Data\dbOperations.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -241,6 +242,11 @@
     <Content Include="Views\Programs\Edit.cshtml" />
     <Content Include="Views\Programs\Index.cshtml" />
     <Content Include="Views\Programs\IndexPuffar.cshtml" />
+    <Content Include="Views\Users_Chanels\Create.cshtml" />
+    <Content Include="Views\Users_Chanels\Delete.cshtml" />
+    <Content Include="Views\Users_Chanels\Details.cshtml" />
+    <Content Include="Views\Users_Chanels\Edit.cshtml" />
+    <Content Include="Views\Users_Chanels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

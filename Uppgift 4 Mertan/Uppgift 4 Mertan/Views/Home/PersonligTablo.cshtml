@@ -1,7 +1,36 @@
-﻿
+﻿@model  List<Uppgift_4_Mertan.Models.db.Programs>
 @{
     ViewBag.Title = "PersonligTablo";
 }
 
-<h2>@ViewBag.Message</h2>
+<h2>Din personlig tablå</h2>
 
+<h2 style="color:#a30707">TV Tablå för idag</h2>
+
+<p>
+    Om du har ingen vald kanal eller du vill ändra dina kanaler du kan klicka på den länken:  @Html.ActionLink("Lista med mina kanaler", "Index", "Users_Chanels")
+</p>
+
+@foreach (var item in ViewBag.Kanal)
+{
+    <h3>@item.Channels.Name</h3>
+    <table class="table-hover table-bordered">
+       @foreach (var prog in Model)
+       {
+           if (prog.Channels.Name == item.Channels.Name)
+           {
+            <tr>
+                <td class="col-md-3">@prog.Time</td>
+                <td class="col-md-3 col-md-offset-3">@prog.Title</td>
+                <td class="col-md-3 col-md-offset-3">@Html.ActionLink("Läs mer", "Details", new { id = prog.Id, datum = prog.Date })</td>
+            </tr>
+           }
+       }     
+    </table>
+    <hr />
+}
+
+<p>
+    Om du har ingen vald kanal eller du vill ändra dina kanaler du kan klicka på den länken:   @Html.ActionLink("Lista med mina kanaler", "Index", "Users_Chanels")
+</p>
+ 
