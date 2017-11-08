@@ -16,8 +16,6 @@ namespace Uppgift_4_Mertan.Controllers
         private dbOperations dOp = new dbOperations();
         private TvTabloEntities2 db = new TvTabloEntities2();
        
-
-
         public ActionResult Index()
         {
             var prog = dOp.GetProgramsDESC();
@@ -148,8 +146,7 @@ namespace Uppgift_4_Mertan.Controllers
             var programs = dOp.GetProgramsASC();
             List<Programs> choosenPrograms = new List<Programs>();
             var users_Chanels = db.Users_Chanels.Include(u => u.Channels).Include(u => u.Users).Where(x => x.Users.Username == User.Identity.Name);
-            string[] chanelArray = new string[5];
-            int counter = 0;
+            
 
             foreach (var prog in programs)
             {
@@ -165,20 +162,6 @@ namespace Uppgift_4_Mertan.Controllers
                     }
                 }
             }
-
-            //foreach (var item in users_Chanels)
-            //{
-            //    try
-            //    {
-            //        chanelArray[counter] = item.Channels.Name;
-            //        counter++;
-            //    }
-            //    catch (Exception)
-            //    {
-
-            //    }
-
-            //}
 
             ViewBag.Kanal = users_Chanels;
             return View(choosenPrograms);
