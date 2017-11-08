@@ -40,6 +40,7 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Logga ut", "SignOut", "Account")</li>
+                        <li style="color:#ffd800; font:bolder; padding-top:15px; padding-left:94px">Du är inloggad som: @User.Identity.Name</li>
                     }
                 </ul>
             </div>

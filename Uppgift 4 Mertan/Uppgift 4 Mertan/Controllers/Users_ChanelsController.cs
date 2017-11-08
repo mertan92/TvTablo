@@ -60,17 +60,23 @@ namespace Uppgift_4_Mertan.Controllers
         {
             if (ModelState.IsValid)
             {
-                int UsChNextId = dOp.GetUserChannelsNextId();
-               
                 db.Users_Chanels.Add(users_Chanels);
                 db.SaveChanges();
+                TempData["message"] = "Allt är klart! Kanalen är tillagd!";
+                TempData["CssClass"] = "alert-success";
                 return RedirectToAction("Index");
 
             }
-
-            ViewBag.ChannelId = new SelectList(db.Channels, "Id", "Name", users_Chanels.ChannelId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Username", users_Chanels.UserId);
-            return View(users_Chanels);
+            else
+            {
+                TempData["message"] = "Något gick fel! Kanalen är INTE tillagd! Kontrolera om du har inte glömt att fylla i någon fält!";
+                TempData["CssClass"] = "alert-danger";
+                ViewBag.Id = dOp.GetUserChannelsNextId();
+                ViewBag.ChannelId = new SelectList(db.Channels, "Id", "Name", users_Chanels.ChannelId);
+                ViewBag.UserId = new SelectList(db.Users, "Id", "Username", users_Chanels.UserId);
+                return View(users_Chanels);
+            }
+            
         }
 
         // GET: Users_Chanels/Edit/5
@@ -102,11 +108,19 @@ namespace Uppgift_4_Mertan.Controllers
             {
                 db.Entry(users_Chanels).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["message"] = "Allt är klart! Listan med kanaler är uppdaterad!";
+                TempData["CssClass"] = "alert-success";
                 return RedirectToAction("Index");
             }
-            ViewBag.ChannelId = new SelectList(db.Channels, "Id", "Name", users_Chanels.ChannelId);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Username", users_Chanels.UserId);
-            return View(users_Chanels);
+            else
+            {
+                TempData["message"] = "Något gick fel! Kanalen är INTE uppdaterad! Kontrolera och prova igen!";
+                TempData["CssClass"] = "alert-danger";
+                ViewBag.ChannelId = new SelectList(db.Channels, "Id", "Name", users_Chanels.ChannelId);
+                ViewBag.UserId = new SelectList(db.Users, "Id", "Username", users_Chanels.UserId);
+                return View(users_Chanels);
+            }
+            
         }
 
         // GET: Users_Chanels/Delete/5
@@ -133,6 +147,8 @@ namespace Uppgift_4_Mertan.Controllers
             Users_Chanels users_Chanels = db.Users_Chanels.Find(id);
             db.Users_Chanels.Remove(users_Chanels);
             db.SaveChanges();
+            TempData["message"] = "Allt är klart! Kanalen är bortagen!";
+            TempData["CssClass"] = "alert-success";
             return RedirectToAction("Index");
         }
 

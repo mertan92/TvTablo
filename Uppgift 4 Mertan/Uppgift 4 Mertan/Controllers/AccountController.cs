@@ -31,7 +31,6 @@ namespace Uppgift_4_Mertan.Controllers
             {
                 if (dOp.CheckUserCredentials(model.Username, model.Password) == true)
                 {
-                    //ako iskame cookie koito da zapazva druga informaciq osven inlogning pishem true vmesto false (zapiski 5.19)
                     FormsAuthentication.SetAuthCookie(model.Username, false);
                     
                     try
@@ -49,6 +48,12 @@ namespace Uppgift_4_Mertan.Controllers
                     ModelState.AddModelError("", "Fel användarnamn eller lösenord!");
                 }
             }
+
+            if (ReturnUrl == "/Home/Admin")
+            {
+                ViewBag.Admin = "(Inlogningen är bara för administratörer i websidan)";
+            }
+
             return View();
         }
 
